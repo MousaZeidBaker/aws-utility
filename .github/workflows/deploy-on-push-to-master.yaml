@@ -1,0 +1,44 @@
+# This workflow deploys on push to master
+
+name: Deploy on push to master workflow
+
+# Controls when the action will run
+on:
+  push:
+    branches:
+    - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    name: Deploy job
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      # Setup NodeJS
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      # Install project dependencies
+      - name: Build
+        run: yarn install
+
+      # Run tests
+      - name: Test
+        run: yarn run test
+
+      # Deploy
+      - name: Deploy eu-central-1
+        env:
+          AWS_ACCESS_KEY_ID: AKIARVDYBRJYTRKZJJOQ
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-central-1
+        run: yarn run cdk deploy --all --require-approval never
