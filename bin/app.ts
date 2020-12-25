@@ -7,7 +7,7 @@ import { AppConstruct } from "./app-construct";
 
 const app = new cdk.App({
   context: {
-    appName: "AwsUtility"
+    appName: "AwsUtility",
   },
 });
 
