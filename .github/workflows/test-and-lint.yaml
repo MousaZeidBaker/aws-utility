@@ -1,4 +1,4 @@
-# This is a linter workflow
+# This is a test & lint workflow
 
 name: Test & Lint
 
@@ -34,6 +34,10 @@ jobs:
       # Run tests
       - name: Test
         run: yarn run test
+
+      # Run cdk CDK synthesize
+      - name: CDK synthesize
+        run: yarn run cdk synthesize
 
       # Run linters
       - name: Run linters
