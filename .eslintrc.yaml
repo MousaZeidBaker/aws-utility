@@ -1,0 +1,23 @@
+env:
+  es6: true
+  node: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - "prettier/@typescript-eslint"
+  - "plugin:prettier/recommended" # Make sure this is always the last configuration in the extends array.
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 11
+plugins:
+  - '@typescript-eslint'
+  - 'simple-import-sort'
+rules: {
+  'no-unused-vars': error,
+  'simple-import-sort/imports': error,
+  '@typescript-eslint/explicit-module-boundary-types': error
+}
