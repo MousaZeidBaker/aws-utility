@@ -35,8 +35,8 @@ jobs:
       - name: Test
         run: yarn run test
 
-      # Runs cdk synthesize command
-      - name: Run cdk synthesize command
+      # Run cdk CDK synthesize
+      - name: CDK synthesize
         run: yarn run cdk synthesize
 
       # Run linters
